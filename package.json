@@ -1,0 +1,38 @@
+{
+    "name": "go-template-fn",
+    "description": "String template and interpolation utility",
+    "author": "Michael Ko",
+    "email": "koyote130708@gmail.com",
+    "version": "1.0.0",
+    "license": "GNU LGPLv3",
+    "keywords": [
+        "template", 
+        "string template",
+        "string interpolation"
+    ],
+    "homepage": "https://github.com/koyote130708/go-template-fn",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/koyote130708/go-template-fn.git"
+    },
+    "main": "index.js",
+    "scripts": {
+        "build": "npm run bundle & npm run minify",
+        "bundle": "webpack build --mode=none --progress --entry ./index.js -o ./dist --output-filename go-template-fn.js --output-library-name=template --output-library-type=umd --output-global-object=this",
+        "minify": "uglifyjs ./dist/go-template-fn.js -c -m --source-map -o ./dist/go-template-fn.min.js",
+        "test": "mocha -u tdd test/*.js",
+        "coverage": "c8 --clean npm run test",
+        "docs": "documentation readme index.js --section=Documentation",
+        "docs:html": "documentation build index.js -f html -o docs"
+    },
+    "devDependencies": {
+        "c8": "^7.12.0",
+        "chai": "^4.3.6",
+        "documentation": "^14.0.0",
+        "mocha": "^10.0.0",
+        "uglify-js": "^3.17.3",
+        "webpack": "^5.74.0",
+        "webpack-cli": "^4.10.0"
+    },
+    "engine": "node >= 0.10"
+}
