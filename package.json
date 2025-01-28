@@ -3,7 +3,7 @@
     "description": "String template and interpolation utility",
     "author": "Michael Ko",
     "email": "koyote130708@gmail.com",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "GNU LGPLv3",
     "keywords": [
         "template", 

@@ -6,7 +6,7 @@
 [![jsdoc](https://img.shields.io/badge/docs-100%25-green.svg)](https://github.com/koyote130708/go-template-fn#documentation)
 [![donation](https://img.shields.io/badge/donate-blue.svg)](https://www.paypal.com/donate/?business=T7Q29NNMZVW98\&no_recurring=0\&item_name=Your+support+will+help+us++continue+our+work+and+improve+the+quality+of+our+products.+Thank+you!\&currency_code=USD)
 
-*   **version**: 1.0.0
+*   **version**: 1.1.0
 *   **license**: GNU LGPLv3
 
 <br />
@@ -81,23 +81,31 @@ Creates a compiled template function that can interpolate values into placeholde
 *   `strTemplate` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** The string template to compile.
 *   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)?** The compilation options.
 
-    *   `options.startTag` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** The start tag for a placeholder.
-    *   `options.endTag` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** The end tag for a placeholder.
+    *   `options.startTag` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** The start tag for a placeholder. (optional, default `"${"`)
+    *   `options.endTag` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** The end tag for a placeholder. (optional, default `"}"`)
+    *   `options.returnAsFragments` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** If `true`, returns the output as an array of fragments; if `false`, joins the fragments and returns as a concatenated string. (optional, default `false`)
 
 #### Examples
 
 ```javascript
-var greet = template("Hello, ${name}");
+const greet = template("Hello, ${name}");
 
-greet({name: "John"}); // => Hello, John
+greet({ name: "John" }); // => Hello, John
 ```
 
 Custom tags
 
 ```javascript
-var greet = template("Hello, <%name%>", {startTag: "<%", endTag: "%>"});
+const greet = template("Hello, <%name%>", {startTag: "<%", endTag: "%>"});
 
-greet({name: "John"}); // => Hello, John
+greet({ name: "John" }); // => Hello, John
+```
+
+Returning the result as a fragments array
+
+```javascript
+const greet = template("Hello, ${name}! You've turned ${age} today.", { returnAsFragments: true });
+greet({ name: "John", age: 20 }); // => ["Hello, ", "John", "! You've turned ", 20, " today."]
 ```
 
 Returns **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** The compiled template function.
